@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="css/components/hover.css">
   <!-- Page-specific CSS -->
   <link rel="stylesheet" href="css/pages/kiosk.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/css/green-audio-player.min.css">
   <!-- Font 설정 -->
   <style>
     @font-face {
@@ -24,54 +25,69 @@
       font-family: 'AvantGarde Bk BT', Arial, sans-serif;
     }
   </style>
+<script src="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/js/green-audio-player.min.js"></script>
+
 </head>
 <body>
   <!-- 배경 텍스트 -->
   <div class="background-text">NewJeans</div>
   
-  <!-- 키오스크 컨테이너 -->
-  <div class="kiosk-container">
-    <!-- 앨범 디스플레이 -->
-    <div class="album-display">
-      <!-- 앨범 이름 -->
-      <h2 class="album-title">Album Name</h2>
+  <!-- 메인 컨테이너 -->
+  <div class="main-container">
+    <!-- 키오스크 컨테이너 -->
+    <div class="kiosk-container">
 
-      <!-- 캐러셀 컨트롤 -->
-      <button id="prev" class="carousel-button left">‹</button>
-      <button id="next" class="carousel-button right">›</button>
+      <!-- 앨범 디스플레이 -->
+      <div class="album-display">
+        <!-- 앨범 이름 -->
+        <h2 class="album-title">Album Name</h2>
 
-      <!-- 앨범 카드 -->
-      <div class="album-card">
-        <img src="assets/placeholder.jpg" alt="Album Cover" class="album-image" />
-        <div class="hover-overlay">
-          <!-- 구매/취소 버튼 -->
-          <button class="hover-btn add-btn">+</button>
-          <button class="hover-btn remove-btn">-</button>
+        <!-- 캐러셀 컨트롤 -->
+        <button id="prev" class="carousel-button left">‹</button>
+        <button id="next" class="carousel-button right">›</button>
+
+        <!-- 앨범 카드 -->
+        <div class="album-card">
+          <img src="assets/placeholder.jpg" alt="Album Cover" class="album-image" />
+          <div class="hover-overlay">
+            <!-- 구매/취소 버튼 -->
+            <button class="hover-btn add-btn">+</button>
+            <button class="hover-btn remove-btn">-</button>
+          </div>
+        </div>
+
+        <!-- 앨범 설명 및 가격 -->
+        <div class="album-info">
+          <p class="description">This is Album 1</p>
+          <p class="price">$25.00</p>
+        </div>
+
+        <!-- 슬라이드 인디케이터 -->
+        <div class="slide-indicators">
+          <div class="indicator" data-index="0"></div>
+          <div class="indicator" data-index="1"></div>
+          <div class="indicator" data-index="2"></div>
         </div>
       </div>
 
-      <!-- 앨범 설명 및 가격 -->
-      <div class="album-info">
-        <p class="description">This is Album 1</p>
-        <p class="price">$25.00</p>
-      </div>
-
-      <!-- 슬라이드 인디케이터 -->
-      <div class="slide-indicators">
-        <div class="indicator" data-index="0"></div>
-        <div class="indicator" data-index="1"></div>
-        <div class="indicator" data-index="2"></div>
-      </div>
     </div>
 
-    <!-- 토탈 금액 -->
-    <div class="total">
-      <p class="total-text">Total:</p>
-      <p class="total-detail">25 = 25</p>
+    <!-- 장바구니 컨테이너 -->
+    <div class="cart-container">
+      <h2>장바구니</h2>
+      <div class="cart-items"></div>
+      <div class="cart-total">
+        <p class="total-text">Total:</p>
+        <p class="total-detail">0</p>
+      </div>
     </div>
   </div>
-
+  <div class="gap-example">
+    <audio>
+        <source src="audio/example-1.mp3" type="audio/mpeg">
+    </audio>
+</div>
   <!-- JavaScript -->
   <script src="js/kiosk.js"></script>
 </body>
-</html> 
+</html>

@@ -34,6 +34,7 @@ const albumDescription = document.querySelector(".description"); // 앨범 설�
 const albumPrice = document.querySelector(".price"); // 앨범 가격 요소
 const indicators = document.querySelectorAll(".indicator"); // 슬라이드 인디케이터들
 const totalDetail = document.querySelector(".total-detail"); // 총 금액 표시 요소
+const cartItems = document.querySelector(".cart-items"); // 장바구니 아이템 요소
 
 // 현재 슬라이드의 정보를 업데이트하는 함수입니다.
 function updateSlide(index) {
@@ -78,6 +79,7 @@ function setupHoverButtons() {
     if (!selectedAlbums.includes(album)) {
       selectedAlbums.push(album);
       totalPrice += album.price;
+      addToCart(album);
       updateTotalDisplay();
       addBtn.style.display = 'none';
       removeBtn.style.display = 'block';
@@ -86,46 +88,74 @@ function setupHoverButtons() {
 
   // - 버튼 클릭 시
   removeBtn.addEventListener('click', () => {
+    console.log(cartItems)
     const album = albums[currentIndex];
-    const index = selectedAlbums.indexOf(album);
-    if (index > -1) {
-      selectedAlbums.splice(index, 1);
-      totalPrice -= album.price;
-      updateTotalDisplay();
-      removeBtn.style.display = 'none';
-      addBtn.style.display = 'block';
+    const cartItem = Array.from(cartItems.children)
+      .find(item => item.querySelector('.remove-from-cart').dataset.albumName === album.name);
+    
+    if (cartItem) {
+      cartItem.querySelector('.remove-from-cart').click();
     }
   });
 }
 
+// 장바구니에 앨범을 추가하는 함수입니다.
+function addToCart(album) {
+  const cartItem = document.createElement('div');
+  cartItem.classList.add('cart-item');
+  
+  cartItem.innerHTML = `
+    <img src="${album.image}" alt="${album.name}" class="cart-item-image">
+    <div class="cart-item-info">
+      <h3>${album.name}</h3>
+      <p>$${album.price.toFixed(2)}</p>
+    </div>
+    <button class="remove-from-cart" data-album-name="${album.name}">×</button>
+  `;
+  
+  // 삭제 버튼에 이벤트 리스너 추가
+  const removeBtn = cartItem.querySelector('.remove-from-cart');
+  removeBtn.addEventListener('click', () => {
+    const albumToRemove = selectedAlbums.find(a => a.name === album.name);
+    if (albumToRemove) {
+      selectedAlbums = selectedAlbums.filter(a => a !== albumToRemove);
+      totalPrice -= albumToRemove.price;
+      cartItem.remove();
+      updateTotalDisplay();
+      updateCartVisibility();  // 장바구니 상태 업데이트
+      
+      // 현재 보이는 앨범이 삭제된 앨범이면 버튼 상태 업데이트
+      if (albums[currentIndex].name === album.name) {
+        const addBtn = document.querySelector('.add-btn');
+        const removeBtn = document.querySelector('.remove-btn');
+        addBtn.style.display = 'block';
+        removeBtn.style.display = 'none';
+      }
+    }
+  });
+  
+  cartItems.appendChild(cartItem);
+  updateCartVisibility();  // 장바구니 상태 업데이트
+}
+
+// 장바구니 표시 상태를 관리하는 함수입니다.
+function updateCartVisibility() {
+  const cartContainer = document.querySelector('.cart-container');
+  if (selectedAlbums.length > 0) {
+    cartContainer.classList.add('show');
+  } else {
+    cartContainer.classList.remove('show');
+  }
+}
+
 // 총액 표시를 업데이트하는 함수입니다.
 function updateTotalDisplay() {
-  const totalDetail = document.querySelector('.total-detail');
   if (selectedAlbums.length === 0) {
     totalDetail.textContent = '0';
   } else {
     const priceList = selectedAlbums.map(album => album.price);
     totalDetail.textContent = priceList.join(' + ') + ` = ${totalPrice}`;
   }
-}
-
-// 구매 또는 취소 버튼 클릭 시 실행되는 함수입니다.
-function togglePurchase() {
-  const album = albums[currentIndex]; // 현재 슬라이드의 앨범 정보를 가져옵니다.
-  const isSelected = selectedAlbums.includes(album); // 해당 앨범이 선택되었는지 확인합니다.
-
-  if (isSelected) {
-    // 이미 선택된 상태라면 선택 취소합니다.
-    selectedAlbums = selectedAlbums.filter(a => a !== album); // 선택 목록에서 제거
-    totalPrice -= album.price; // 총 금액에서 해당 앨범 가격을 차감
-  } else {
-    // 선택되지 않은 상태라면 선택합니다.
-    selectedAlbums.push(album); // 선택 목록에 추가
-    totalPrice += album.price; // 총 금액에 해당 앨범 가격을 추가
-  }
-
-  // 총 금액 상세 정보를 업데이트합니다.
-  updateTotalDisplay();
 }
 
 // 이전 슬라이드로 이동하는 버튼의 클릭 이벤트 리스너입니다.
@@ -152,3 +182,4 @@ indicators.forEach((indicator) => {
 updateSlide(currentIndex);
 setupHoverButtons();
 updateTotalDisplay();
+updateCartVisibility();  // 초기 장바구니 상태 설정
