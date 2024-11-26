@@ -1,0 +1,56 @@
+body {
+    background: #1f1f1f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative; /* 배경 텍스트를 위한 상대 위치 지정 */
+  }
+  
+  .background-text {
+    position: absolute;
+    top: 0%; /* 상단 위치: 화면 높이의 10% 지점 */
+    left: 50%; /* 화면의 중앙 정렬 */
+    transform: translateX(-50%); /* 수평 가운데 정렬 */
+    font-size: 300px; /* 텍스트 크기 조정 */
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.1); /* 불투명한 화이트 */
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    z-index: -1; /* 키오스크 요소 뒤로 배치 */
+  }
+  
+  .kiosk-container {
+    position: relative;
+    width: 360px;
+    height: 620px;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .album-display {
+    width: 100%;
+    padding: 10px 20px;
+  }
+  
+  .total {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-top: 1px solid #ddd;
+  }
+  
+  .total-text {
+    color: #333;
+  }
+  
+  .total-detail {
+    color: #555;
+  }
