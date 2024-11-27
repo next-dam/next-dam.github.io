@@ -1,51 +1,51 @@
 .album-display {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .album-title {
-    margin-bottom: 10px;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .album-card {
-    position: relative;
-    width: 300px;
-    height: 400px;
-    margin: 20px 0;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .album-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .slide-indicators {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    margin-top: 15px;
-    cursor: pointer;
-  }
-  
-  .indicator {
-    width: 10px;
-    height: 10px;
-    background: #ddd;
-    border-radius: 50%;
-  }
-  
-  .indicator.active {
-    background: #333;
-  }
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.album-title {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.album-card {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.album-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  background: #ddd;
+  border-radius: 50%;
+}
+
+.indicator.active {
+  background: #333;
+}

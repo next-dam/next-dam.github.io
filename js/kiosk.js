@@ -74,27 +74,36 @@ function setupHoverButtons() {
   });
 
   // + 버튼 클릭 시
-  addBtn.addEventListener('click', () => {
+  addBtn.addEventListener('click', (e) => {
+    e.stopPropagation();  // 이벤트 버블링 방지
     const album = albums[currentIndex];
     if (!selectedAlbums.includes(album)) {
       selectedAlbums.push(album);
       totalPrice += album.price;
-      addToCart(album);
+      cart.addItem({
+        id: album.name,
+        name: album.name,
+        price: album.price
+      });
       updateTotalDisplay();
       addBtn.style.display = 'none';
       removeBtn.style.display = 'block';
+      document.querySelector('.cart-container').classList.add('show'); // 장바구니 열기
     }
   });
 
   // - 버튼 클릭 시
-  removeBtn.addEventListener('click', () => {
-    console.log(cartItems)
+  removeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();  // 이벤트 버블링 방지
     const album = albums[currentIndex];
-    const cartItem = Array.from(cartItems.children)
-      .find(item => item.querySelector('.remove-from-cart').dataset.albumName === album.name);
-    
-    if (cartItem) {
-      cartItem.querySelector('.remove-from-cart').click();
+    const index = selectedAlbums.indexOf(album);
+    if (index > -1) {
+      selectedAlbums.splice(index, 1);
+      totalPrice -= album.price;
+      cart.removeItem(album.name);
+      updateTotalDisplay();
+      removeBtn.style.display = 'none';
+      addBtn.style.display = 'block';
     }
   });
 }

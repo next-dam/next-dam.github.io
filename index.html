@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/components/button.css">
   <link rel="stylesheet" href="css/components/carousel.css">
   <link rel="stylesheet" href="css/components/hover.css">
+  <link rel="stylesheet" href="css/components/cart.css">
   <!-- Page-specific CSS -->
   <link rel="stylesheet" href="css/pages/kiosk.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/css/green-audio-player.min.css">
@@ -73,15 +74,33 @@
     </div>
 
     <!-- 장바구니 컨테이너 -->
-    <div class="cart-container">
+    <div class="cart-container hidden">
+      <button class="cart-close-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
       <h2>장바구니</h2>
       <div class="cart-items"></div>
       <div class="cart-total">
         <p class="total-text">Total:</p>
-        <p class="total-detail">0</p>
+        <p class="total-detail">$0.00</p>
       </div>
+      <button class="purchase-btn">Get the Vibe</button>
     </div>
   </div>
+
+  <!-- 장바구니 토글 버튼 -->
+  <button class="cart-toggle-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="9" cy="21" r="1"></circle>
+      <circle cx="20" cy="21" r="1"></circle>
+      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+    </svg>
+    <span class="cart-item-count">0</span>
+  </button>
+
   <div class="gap-example">
     <audio>
         <source src="audio/example-1.mp3" type="audio/mpeg">
@@ -89,5 +108,6 @@
 </div>
   <!-- JavaScript -->
   <script src="js/kiosk.js"></script>
+  <script src="js/cart.js"></script>
 </body>
 </html>
