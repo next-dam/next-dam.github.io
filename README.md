@@ -1,7 +1,7 @@
-# NewJeans Album Kiosk Project
+# Test
 
 ## Project Overview
-This repository contains the code for a kiosk interface designed for NewJeans album. It is built using HTML, CSS, and JavaScript with a focus on responsiveness and user-friendly navigation.
+test
 
 ## Tech Stack
 - HTML5
@@ -9,6 +9,3 @@ This repository contains the code for a kiosk interface designed for NewJeans al
 - JavaScript
 
 ## Project Structure
-- **Static Data:** Album details such as name, description, and price are hardcoded.
-- **Navigation:** Users can navigate slides using arrow buttons and drag/slide functionality.
-- **Fixed Background Text:** Background text remains constant across slides.
