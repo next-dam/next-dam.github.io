@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import TodoInput from './components/TodoInput'
 import TodoList from './components/TodoList'
-import styles from './css/App.css'
+import styles from './css/App.module.css'
 
 function App() { const [todos, setTodos] = useState(() => {
   const storedTodos = localStorage.getItem("todos");

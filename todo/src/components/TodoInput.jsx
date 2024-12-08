@@ -1,7 +1,8 @@
 // TodoInput.jsx
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import style from "../css/TodoInput.css";
+import style from "../css/TodoInput.module.css";
+
 const TodoInput = ({ addTodo }) => {
   const [input, setInput] = useState('');
   const handleAdd = () => {
